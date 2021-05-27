@@ -48,3 +48,4 @@ def username_as_requirements(username_info_check):
     if nums+chars<6:
         return False
     return True
+

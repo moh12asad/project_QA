@@ -1,5 +1,6 @@
 from tkinter import *
 from Help import *
+from patient import *
 flag=0
 user_logged_in=False
 def register_login_main():
@@ -211,6 +212,7 @@ def login():
     username_entry_login = Entry(login_screen, textvariable=username_verify_login)
     username_entry_login.pack()
 
+
     # password entry
     Label(login_screen, text="").pack()
     Label(login_screen, text="Password * ").pack()
@@ -297,25 +299,25 @@ def close_login_sucess_screen():
     main_screen.withdraw()
     doctor()
 
+
 def doctor():
-    print("ASDASd")
     global doctor_screen
     doctor_screen=Toplevel(login_sucess_screen)
     doctor_screen.geometry("300x250")
     doctor_screen.title("patient")
     Label(doctor_screen, text="Add patient and start the diagnosis").pack()
     Label(login_sucess_screen, text="").pack()
-    Button(text="Add patient", bg="light green", height="2", width="30",command=add_patient).pack()
+    Button(doctor_screen,text="Add patient", bg="light green", height="2", width="30",command=add_patient).pack()
 
-def add_patient():
-    print("asdasd")
-    global add_patient_screen
-    add_patient_screen=Toplevel(doctor_screen)
-    add_patient_screen.geometry("500x500")
-    add_patient_screen.title("patient details and diagnosis")
-    Label(add_patient_screen,text="enter the patient details and start the diagnosis").pack()
-    Label(add_patient_screen,text="").pack()
-    Button(text="Register",bg="light green", height="2", width="30", command=register).pack()
+
+
+
+
+
+
+
+
+
 
 
 
