@@ -12,7 +12,7 @@ def register_login_main():
     main_screen.title("Account Login")  # set the title of GUI window
 
     # create a Form label
-    Label(text="Welcome our system\nChoose Login Or Register", bg="light green", width="50", height="2", font=("Calibri", 13)).pack()
+    Label(text="Welcome our medical system\nChoose Login Or Register", bg="light green", width="50", height="2", font=("Calibri", 13)).pack()
     Label(text="").pack()
 
     # create a login button
@@ -41,26 +41,26 @@ def register():
 
     #username entry
     Label(register_screen,text="").pack()
-    Label(register_screen,text="username * ").pack()
-    username_entry=Entry(register_screen,textvariable=username)
+    Label(register_screen,text="username ",width="20").pack()
+    username_entry=Entry(register_screen,width="20",textvariable=username)
     username_entry.pack()
 
 
     #id entry
     Label(register_screen, text="").pack()
-    Label(register_screen, text="Id * ").pack()
+    Label(register_screen, text="Id ",anchor=NW).pack()
     id_entry=Entry(register_screen, textvariable=id)
     id_entry.pack()
 
     #password entry
     Label(register_screen, text="").pack()
-    Label(register_screen, text="Password * ").pack()
+    Label(register_screen, text="Password ",anchor=NW).pack()
     password_entry=Entry(register_screen, textvariable=password,show='*')
     password_entry.pack()
 
     #password confirmation entry
     Label(register_screen, text="").pack()
-    Label(register_screen, text="Password confirmation * ").pack()
+    Label(register_screen, text="Password confirmation ",anchor=NW).pack()
     password_confirmation_entry=Entry(register_screen, textvariable=password_confirmation,show='*')
     password_confirmation_entry.pack()
 
@@ -210,20 +210,20 @@ def login():
 
 
     Label(login_screen, text="").pack()
-    Label(login_screen, text="username * ").pack()
+    Label(login_screen, text="username  ").pack()
     username_entry_login = Entry(login_screen, textvariable=username_verify_login)
     username_entry_login.pack()
 
 
     # password entry
     Label(login_screen, text="").pack()
-    Label(login_screen, text="Password * ").pack()
+    Label(login_screen, text="Password  ").pack()
     password_entry_login = Entry(login_screen, textvariable=password_verify_login, show='*')
     password_entry_login.pack()
 
     #id entry
     Label(login_screen, text="").pack()
-    Label(login_screen, text="Id * ").pack()
+    Label(login_screen, text="Id  ").pack()
     id_entry_login = Entry(login_screen, textvariable=id_verify_login)
     id_entry_login.pack()
 

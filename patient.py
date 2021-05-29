@@ -54,6 +54,14 @@ def add_patient():
     Label(text="").pack()
 
 
+    name_entry.delete(0, END)
+    age_entry.delete(0, END)
+    smoking_entry.delete(0, END)
+    gender_entry.delete(0, END)
+    fever_entry.delete(0, END)
+    ethnic_entry.delete(0, END)
+
+
 def diagnosis():
     global diagnosis_screen
     diagnosis_screen = Toplevel(add_patient_screen)
@@ -208,24 +216,34 @@ def patient_file(patient_details, patient_high_low_values, name1, age1, smoking1
             patient_details['ap']) + " " + patient_high_low_values['ap'] + "\n")
 
     treatment=[]
+    patient_details_file.write("diseases: \n")
+    counter=0
     for i in patient_diagnosis:
-            treatment.append(treatments[i])
-    patient_details_file.write("Treatment: \n")
+        counter+=1
+        if counter%5==0:
+            patient_details_file.write("\n")
+        patient_details_file.write(i +",")
+    for i in patient_diagnosis:
+        treatment.append(treatments[i])
 
+    patient_details_file.write("\nTreatment: \n")
+    counter=0
     for i in treatment:
-        patient_details_file.write(i+ "\n")
+        counter+=1
+        if counter%5==0:
+            patient_details_file.write("\n")
+        patient_details_file.write(i+',')
     patient_details_file.close()
     treatment_screen(name1)
 
 def treatment_screen(name):
     global patient_details_treatments
     patient_details_treatments=Toplevel()
-    patient_details_treatments.geometry("700x700")
+    patient_details_treatments.geometry("1000x1000")
     patient_details_treatments.title("Patient details and treatments")
 
     treatments_file=open("Patient_" + name + ".txt","r")
     for line in treatments_file.readlines():
-        Label(patient_details_treatments, text=line,anchor=NW).pack()
-        #Label(patient_details_treatments, text="\n").pack()
+        label=Label(patient_details_treatments, text=line,width="10000",anchor=W).pack()
 
 
