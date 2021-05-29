@@ -10,13 +10,14 @@ def add_patient():
     Label(add_patient_screen, text="enter the patient details and start the diagnosis").pack()
     Label(add_patient_screen, text="").pack()
 
-    global name, name_entry, age, age_entry, smoking, smoking_entry, gender, gender_entry, ethnic, ethnic_entry
+    global name, name_entry, age, age_entry, smoking, smoking_entry, gender, gender_entry, ethnic, ethnic_entry,fever,fever_entry
 
     name = StringVar()
     age = StringVar()
     smoking = StringVar()
     gender = StringVar()
     ethnic = StringVar()
+    fever=StringVar()
 
     Label(add_patient_screen, text="").pack()
     Label(add_patient_screen, text="Name").pack()
@@ -42,6 +43,11 @@ def add_patient():
     Label(add_patient_screen, text="Ethnic").pack()
     ethnic_entry = Entry(add_patient_screen, textvariable=ethnic)
     ethnic_entry.pack()
+
+    Label(add_patient_screen, text="").pack()
+    Label(add_patient_screen, text="Do you have a fever?").pack()
+    fever_entry = Entry(add_patient_screen, textvariable=fever)
+    fever_entry.pack()
 
     Label(text="\n").pack()
     Button(add_patient_screen, text="Diagnosis", bg="light green", height="1", width="20", command=diagnosis).pack()
@@ -124,13 +130,13 @@ def diagnosis():
     ap_entry.pack()
 
     Label(diagnosis_screen, text="")
-    Button(diagnosis_screen, bg="light green", text="tepol", height="2", width="30",
-           command=arranged_patient_data).pack()
+    Button(diagnosis_screen, bg="light green", text="treatment", height="2", width="30",command=arranged_patient_data).pack()
+
 
 
 def arranged_patient_data():
     patient_details_names = ['wbc', 'neut', 'lymph', 'rbc', 'hct', 'urea', 'hb', 'creatine', 'iron', 'hdl', 'ap']
-    patient_details_values = [int(wbc.get()), float(neut.get()), float(lymph.get()), float(rbc.get()), float(hct.get()),
+    patient_details_values = [float(wbc.get()), float(neut.get()), float(lymph.get()), float(rbc.get()), float(hct.get()),
                               float(urea.get()), float(hb.get()), float(creatine.get()), float(iron.get()),
                               float(hdl.get()), float(ap.get())]
     patient_details = {}  # dictionary that contains the things and thier values
@@ -143,11 +149,32 @@ def arranged_patient_data():
     smoking1 = smoking.get()
     gender1 = gender.get()
     ethnic1 = ethnic.get()
+    fever1=fever.get()
 
-    patient_high_low_values = check_patient_data(copy_patient_details, int(age.get()), smoking.get(), gender.get(),
-                                                 ethnic.get())
-    print(patient_high_low_values)
-
+    patient_high_low_values = check_patient_data(copy_patient_details, int(age.get()), smoking.get(), gender.get(),ethnic.get())
+    patient_diagnosis=get_patient_diagnosis(patient_high_low_values.copy(),age1,smoking1,gender1,ethnic1,fever1)
+    treatments = {'anemia': '2 pills 10mg of B12 a day for a month',
+                  'diet disease': 'Schedule an appointment with a nutritionist'
+        , 'bleeding': 'go to hospital immediatly',
+                  'hyperlipidemia': 'Schedule an appointment with a nutritionist and one pill 5mg of smobell a day for  one week'
+        , 'disruption of blood production': 'one pill 10mg of B12 a day for a week and one pill 5mg of folic acid',
+                  'hematological disorder': 'An injection of a hormone to encourage red blood cell production'
+        , 'iron poisoning': 'go to hospital', 'dehydration': 'drink a lot of water and drinks and have rest for awhile'
+        , 'infection': 'Dedicated antibiotic',
+                  'vitamin deficiency': 'ave a blood test to idenitify the missing vitamins'
+        , 'viral disease': 'have a rest in your house', 'biliary tract': 'have a surgical treatment',
+                  'heart disease': 'Schedule an appointment with a nutritionist'
+        , 'blood disease': 'A combination of cyclophosphamide and corticosteroids',
+                  'liver disease': 'Referral to a specific diagnosis for the purpose of determining treatment'
+        , 'kidney diseases': 'Balance blood sugar levels',
+                  'iron deficiency': 'Two 10 mg pills of B12 a day for a month',
+                  'muscle disease': 'Two 5 mg pills of Altman c3 turmeric a day for a month'
+        , 'smoking': 'Stop smoking', 'lung disease': 'Stop smoking and refer to X-ray of the lungs',
+                  'overactive thyroid gland': 'Propylthiouracil to reduce thyroid activity'
+        , 'adult diabetes mellitus': 'Insulin adjustment', 'cancer': 'Entrectinib',
+                  'increased consumption of meat': 'Schedule an appointment with a nutritionist'
+        , 'use of various medications': 'Referral to a family doctor for a match between medications',
+                  'malnutrition': 'Schedule an appointment with a nutritionist'}
     wbc_entry.delete(0, END)
     neut_entry.delete(0, END)
     lymph_entry.delete(0, END)
@@ -160,10 +187,10 @@ def arranged_patient_data():
     hdl_entry.delete(0, END)
     ap_entry.delete(0, END)
 
-    patient_file(patient_details, patient_high_low_values, name1, age1, smoking1, gender1, ethnic1)
+    patient_file(patient_details, patient_high_low_values, name1, age1, smoking1, gender1, ethnic1,treatments,patient_diagnosis)
 
 
-def patient_file(patient_details, patient_high_low_values, name1, age1, smoking1, gender1, ethnic1):
+def patient_file(patient_details, patient_high_low_values, name1, age1, smoking1, gender1, ethnic1,treatments,patient_diagnosis):
     patient_details_file = open("Patient_" + name1 + ".txt", "a")
     patient_details_file.write(
         "name: " + name1 + " age: " + age1 + " gender: " + gender1 + " ethnic: " + ethnic1 + " smoking: " + smoking1 + "\n")
@@ -171,13 +198,34 @@ def patient_file(patient_details, patient_high_low_values, name1, age1, smoking1
         "WBC: " + str(patient_details['wbc']) + " " + patient_high_low_values['wbc'] + " \nNeut: " + str(
             patient_details['neut']) + " " + patient_high_low_values['neut'] + " \nLymph: " + str(
             patient_details['lymph']) + " " + patient_high_low_values['lymph'] + "\nRBC: " + str(
-            patient_details['rbc']) +
+            patient_details['rbc']) +" "+patient_high_low_values['rbc']+
         "\nHCT: " + str(patient_details['hct']) + " " + patient_high_low_values['hct'] + "\nUrea: " + str(
-            patient_details['urea']) + patient_high_low_values['urea'] + "\nHB: " + str(
+            patient_details['urea'])+" " + patient_high_low_values['urea'] + "\nHB: " + str(
             patient_details['hb']) + " " + patient_high_low_values['hb'] + "\nCreatine: " + str(
             patient_details['creatine']) + " " + patient_high_low_values['creatine'] +
         "\nIron: " + str(patient_details['iron']) + " " + patient_high_low_values['iron'] + "\nHDL: " + str(
             patient_details['hdl']) + " " + patient_high_low_values['hdl'] + "\nAlkaline Phosphatase: " + str(
             patient_details['ap']) + " " + patient_high_low_values['ap'] + "\n")
 
+    treatment=[]
+    for i in patient_diagnosis:
+            treatment.append(treatments[i])
+    patient_details_file.write("Treatment: \n")
+
+    for i in treatment:
+        patient_details_file.write(i+ "\n")
     patient_details_file.close()
+    treatment_screen(name1)
+
+def treatment_screen(name):
+    global patient_details_treatments
+    patient_details_treatments=Toplevel()
+    patient_details_treatments.geometry("700x700")
+    patient_details_treatments.title("Patient details and treatments")
+
+    treatments_file=open("Patient_" + name + ".txt","r")
+    for line in treatments_file.readlines():
+        Label(patient_details_treatments, text=line,anchor=NW).pack()
+        #Label(patient_details_treatments, text="\n").pack()
+
+

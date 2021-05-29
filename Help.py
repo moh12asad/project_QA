@@ -260,7 +260,126 @@ def check_patient_data(patient_details,age,smoking,gender,ethnic):
 
 
 
+def get_patient_diagnosis(patient_high_low_values,age,smoking,gender,ethnic,fever):
+    diseases=[]
+    if patient_high_low_values['wbc']=="high":
+        if fever=="yes":
+            diseases.append("infection")
+        else:
+            diseases.append("blood disease")
+            diseases.append("cancer")
+
+    if patient_high_low_values['wbc']=="low":
+        diseases.append("viral disease")
+
+    if patient_high_low_values['neut']=="low":
+        diseases.append("infection")
+
+    if patient_high_low_values['neut']=="low":
+        diseases.append("disruption of blood production")
+        diseases.append("infection")
+
+    if patient_high_low_values['lymph']=="high":
+        diseases.append("disruption of blood production")
+
+    if patient_high_low_values['lymph']=="low":
+        diseases.append("infection")
+        diseases.append("cancer")
+
+    if patient_high_low_values['rbc']=="high":
+        diseases.append("disruption of blood production")
+
+    if patient_high_low_values['rbc']=="low":
+        diseases.append("anemia")
+
+    if patient_high_low_values['hct']=="high":
+        if smoking=="yes":
+            diseases.append("smoking")
+            diseases.append("lung disease")
+
+    if patient_high_low_values['hct']=="low":
+        diseases.append("bleeding")
+        diseases.append("anemia")
+
+    if patient_high_low_values['urea']=="high":
+        diseases.append("kidney diseases")
+        diseases.append("dehydration")
+        diseases.append("diet disease")
+
+    if patient_high_low_values['urea']=="low":
+        diseases.append("diet disease")
+        diseases.append("malnutrition")
+        diseases.append("liver disease")
+
+    if patient_high_low_values['hb']=="low":
+        diseases.append("anemia")
+        diseases.append("hematological disorder")
+        diseases.append("iron deficiency")
+        diseases.append("bleeding")
+
+    if patient_high_low_values['creatine']=="high":
+        diseases.append("kidney diseases")
+        diseases.append("muscle disease")
+        diseases.append("increased consumption of meat")
+
+    if patient_high_low_values['creatine']=="low":
+        diseases.append("malnutrition")
+        diseases.append("iron deficiency")
+        diseases.append("diet disease")
+
+    if patient_high_low_values['iron']=="high":
+        diseases.append("iron poisoning")
+
+    if patient_high_low_values['iron']=="low":
+        diseases.append("malnutrition")
+        diseases.append("iron deficiency")
+        diseases.append("bleeding")
+
+    if patient_high_low_values['hdl']=="low":
+        diseases.append("heart disease")
+        diseases.append("hyperlipidemia")
+        diseases.append("adult diabetes mellitus")
+
+    if patient_high_low_values['ap']=="high":
+        diseases.append("liver disease")
+        diseases.append("biliary tract")
+        diseases.append("overactive thyroid gland")
+        diseases.append("use of various medications")
+
+    if patient_high_low_values['ap']=="high":
+        diseases.append("malnutrition")
+        diseases.append("vitamin deficiency")
+
+    diseases_reduction=reduction_diseases(diseases)
+    return diseases_reduction
 
 
 
 
+def reduction_diseases(diseases):
+    for i in diseases:
+        count=0
+        for j in diseases:
+            if i==j:
+                count+=1
+                if count>1:
+                    diseases.remove(j)
+    return diseases
+
+
+
+
+
+'''
+treatments={'anemia':'2 pills 10mg of B12 a day for a month','diet':'Schedule an appointment with a nutritionist'
+            ,'bleeding':'go to hospital immediatly','hyperlipidemia':'Schedule an appointment with a nutritionist and one pill 5mg of smobell a day for  one week'
+            ,'disruption of blood production':'one pill 10mg of B12 a day for a week and one pill 5mg of folic acid','hematological disorder':'An injection of a hormone to encourage red blood cell production'
+            ,'iron poisoning':'go to hospital','dehydration':'drink a lot of water and drinks and have rest for awhile'
+            ,'infection':'Dedicated antibiotic','vitamin deficiency':'ave a blood test to idenitify the missing vitamins'
+            ,'viral disease':'have a rest in your house','biliary tract':'have a surgical treatment','heart disease':'Schedule an appointment with a nutritionist'
+            ,'blood disease':'A combination of cyclophosphamide and corticosteroids','liver disease':'Referral to a specific diagnosis for the purpose of determining treatment'
+            ,'kidney diseases':'Balance blood sugar levels','iron deficiency':'Two 10 mg pills of B12 a day for a month','muscle disease':'Two 5 mg pills of Altman c3 turmeric a day for a month'
+            ,'smoking':'Stop smoking','lung disease':'Stop smoking and refer to X-ray of the lungs','overactive thyroid gland':'Propylthiouracil to reduce thyroid activity'
+            ,'adult diabetes mellitus':'Insulin adjustment','cancer':'Entrectinib','increased consumption of meat':'Schedule an appointment with a nutritionist'
+            ,'use of various medications':'Referral to a family doctor for a match between medications','malnutrition':'Schedule an appointment with a nutritionist'}
+'''
