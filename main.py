@@ -15,6 +15,7 @@ def register_login_main():
     # create a Form label
     my_label=Label(main_screen,image=bg)
     my_label.place(x=0,y=0,relwidth=1,relheight=1)
+
     Label(main_screen,text="Welcome our medical system\nChoose Login Or Register", bg="light green", width="50", height="2", font=("Calibri", 13)).pack()
     Label(text="").pack()
 
@@ -31,11 +32,12 @@ def register():
     global register_screen
     register_screen=Toplevel(main_screen)
     register_screen.title("Register")
-    register_screen.geometry("300x350")
-    register_bg=PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\register background.gif')
-    # create a Form label
+    register_screen.geometry("300x500")
+    register_bg=PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\register bg new.gif')
     register_label=Label(register_screen,image=register_bg)
     register_label.place(x=0,y=0,relwidth=1,relheight=1)
+
+    register_label.image=register_bg
 
     global username,password,username_entry,password_entry,password_confirmation_entry,password_confirmation,id,id_entry
     username=StringVar()
@@ -43,32 +45,32 @@ def register():
     password_confirmation=StringVar()
     id=StringVar()
 
-    Label(register_screen,text="please enter details below").pack()
+    Label(register_screen,text="please enter details below",width="50", height="2",bg='light green',font=("Calibri", 15)).pack()
 
 
 
     #username entry
     Label(register_screen,text="").pack()
-    Label(register_screen,text="username ",width="20").pack()
+    Label(register_screen,text="username ",width="20",bg='light green').pack()
     username_entry=Entry(register_screen,width="20",textvariable=username)
     username_entry.pack()
 
 
     #id entry
     Label(register_screen, text="").pack()
-    Label(register_screen, text="Id ",anchor=NW).pack()
+    Label(register_screen, text="Id ",bg='light green').pack()
     id_entry=Entry(register_screen, textvariable=id)
     id_entry.pack()
 
     #password entry
     Label(register_screen, text="").pack()
-    Label(register_screen, text="Password ",anchor=NW).pack()
+    Label(register_screen, text="Password ",bg='light green').pack()
     password_entry=Entry(register_screen, textvariable=password,show='*')
     password_entry.pack()
 
     #password confirmation entry
     Label(register_screen, text="").pack()
-    Label(register_screen, text="Password confirmation ",anchor=NW).pack()
+    Label(register_screen, text="Password confirmation ",bg='light green').pack()
     password_confirmation_entry=Entry(register_screen, textvariable=password_confirmation,show='*')
     password_confirmation_entry.pack()
 
@@ -137,6 +139,8 @@ def password_confirmation_error():
     password_confirmation_error_screen = Toplevel(register_screen)
     password_confirmation_error_screen.title("Error")
     password_confirmation_error_screen.geometry("250x150")
+
+
     Label(password_confirmation_error_screen, text="Passwords does not match", fg="red", font=("Calibri", 13)).pack()
     Button(password_confirmation_error_screen, bg="light green", text="Ok", width=10, height=5, command=close_password_confirmation_error_screen).pack()
     username_entry.delete(0, END)
@@ -205,9 +209,22 @@ def login():
     global login_screen
     login_screen=Toplevel(main_screen)
     login_screen.title("Login")
-    login_screen.geometry("300x300")
-    Label(login_screen,text="Please enter details below to login").pack()
+    login_screen.geometry("300x500")
+
+    login_bg=PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\register bg new.gif')
+    # create a Form label
+    login_label=Label(login_screen,image=login_bg)
+    login_label.place(x=0,y=0,relwidth=1,relheight=1)
+    login_label.image = login_bg
+
+
+
+
+    Label(login_screen,text="Please enter details below to login",width="50", height="2",bg='light green',font=("Calibri", 15)).pack()
     Label(login_screen,text="").pack()
+
+
+
 
     global username_verify_login,password_verify_login,id_verify_login
     global username_entry_login,password_entry_login,id_entry_login
@@ -218,20 +235,20 @@ def login():
 
 
     Label(login_screen, text="").pack()
-    Label(login_screen, text="username  ").pack()
+    Label(login_screen, text="username  ",bg='light green').pack()
     username_entry_login = Entry(login_screen, textvariable=username_verify_login)
     username_entry_login.pack()
 
 
     # password entry
     Label(login_screen, text="").pack()
-    Label(login_screen, text="Password  ").pack()
+    Label(login_screen, text="Password  ",bg='light green').pack()
     password_entry_login = Entry(login_screen, textvariable=password_verify_login, show='*')
     password_entry_login.pack()
 
     #id entry
     Label(login_screen, text="").pack()
-    Label(login_screen, text="Id  ").pack()
+    Label(login_screen, text="Id  ",bg='light green').pack()
     id_entry_login = Entry(login_screen, textvariable=id_verify_login)
     id_entry_login.pack()
 
@@ -299,7 +316,14 @@ def login_sucess_screen():
      login_sucess_screen=Toplevel(login_screen)
      login_sucess_screen.title("Login sucess")
      login_sucess_screen.geometry("300x250")
-     Label(login_sucess_screen,text="Welcome Doctor").pack()
+
+     login_sucess_bg = PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\login background.gif')
+     # create a Form label
+     login_sucess_label = Label(login_sucess_screen, image=login_sucess_bg)
+     login_sucess_label.place(x=0, y=0, relwidth=1, relheight=1)
+     login_sucess_label.image = login_sucess_bg
+
+     Label(login_sucess_screen,text="Welcome Doctor",width="50", height="2",bg='light green',font=("Calibri", 15)).pack()
      Label(login_sucess_screen,text="").pack()
      Button(login_sucess_screen,text="Close", bg="light green", height="2", width="30", command=close_login_sucess_screen).pack()
 
@@ -315,7 +339,14 @@ def doctor():
     doctor_screen=Toplevel(login_sucess_screen)
     doctor_screen.geometry("300x250")
     doctor_screen.title("patient")
-    Label(doctor_screen, text="Add patient and start the diagnosis").pack()
+
+    doctor_bg = PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\login background.gif')
+    # create a Form label
+    doctor_label = Label(doctor_screen, image=doctor_bg)
+    doctor_label.place(x=0, y=0, relwidth=1, relheight=1)
+    doctor_label.image = doctor_bg
+
+    Label(doctor_screen, text="Add patient and start the diagnosis",width="50", height="2",bg='light green',font=("Calibri", 15)).pack()
     Label(doctor_screen, text="").pack()
     Button(doctor_screen,text="Add patient", bg="light green", height="2", width="30",command=add_patient).pack()
     Label(doctor_screen,text=" ").pack()

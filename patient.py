@@ -8,7 +8,13 @@ def add_patient():
     add_patient_screen = Toplevel()
     add_patient_screen.geometry("500x500")
     add_patient_screen.title("patient details and diagnosis")
-    Label(add_patient_screen, text="enter the patient details and start the diagnosis").pack()
+
+    add_patient_bg = PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\500x500.gif')
+    add_patient_label = Label(add_patient_screen, image=add_patient_bg)
+    add_patient_label.place(x=0, y=0, relwidth=1, relheight=1)
+    add_patient_label.image = add_patient_bg
+
+    Label(add_patient_screen, text="enter the patient details and start the diagnosis",width="50", height="2",bg='light green',font=("Calibri", 15)).pack()
     Label(add_patient_screen, text="").pack()
 
     global name, name_entry, age, age_entry, smoking, smoking_entry, gender, gender_entry, ethnic, ethnic_entry,fever,fever_entry
@@ -21,32 +27,32 @@ def add_patient():
     fever=StringVar()
 
     Label(add_patient_screen, text="").pack()
-    Label(add_patient_screen, text="Name").pack()
+    Label(add_patient_screen, text="Name",bg='light green').pack()
     name_entry = Entry(add_patient_screen, textvariable=name)
     name_entry.pack()
 
     Label(add_patient_screen, text="").pack()
-    Label(add_patient_screen, text="Age").pack()
+    Label(add_patient_screen, text="Age",bg='light green').pack()
     age_entry = Entry(add_patient_screen, textvariable=age)
     age_entry.pack()
 
     Label(add_patient_screen, text="").pack()
-    Label(add_patient_screen, text="Smoking").pack()
+    Label(add_patient_screen, text="Smoking",bg='light green').pack()
     smoking_entry = Entry(add_patient_screen, textvariable=smoking)
     smoking_entry.pack()
 
     Label(add_patient_screen, text="").pack()
-    Label(add_patient_screen, text="Gender").pack()
+    Label(add_patient_screen, text="Gender",bg='light green').pack()
     gender_entry = Entry(add_patient_screen, textvariable=gender)
     gender_entry.pack()
 
     Label(add_patient_screen, text="").pack()
-    Label(add_patient_screen, text="Ethnic").pack()
+    Label(add_patient_screen, text="Ethnic",bg='light green').pack()
     ethnic_entry = Entry(add_patient_screen, textvariable=ethnic)
     ethnic_entry.pack()
 
     Label(add_patient_screen, text="").pack()
-    Label(add_patient_screen, text="Do you have a fever?").pack()
+    Label(add_patient_screen, text="Do you have a fever?",bg='light green').pack()
     fever_entry = Entry(add_patient_screen, textvariable=fever)
     fever_entry.pack()
 
@@ -68,6 +74,13 @@ def diagnosis():
     diagnosis_screen = Toplevel(add_patient_screen)
     diagnosis_screen.geometry("500x500")
     diagnosis_screen.title("Diagnosis")
+
+    diagnosis_screen_bg = PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\500x500.gif')
+    diagnosis_screen_label = Label(diagnosis_screen, image=diagnosis_screen_bg)
+    diagnosis_screen_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+    diagnosis_screen_label.image = diagnosis_screen_bg
+
     global wbc, neut, lymph, rbc, hct, urea, hb, creatine, iron, hdl, ap
     global wbc_entry, neut_entry, lymph_entry, rbc_entry, hct_entry, urea_entry, hb_entry, creatine_entry, iron_entry, hdl_entry, ap_entry
 
@@ -243,10 +256,11 @@ def treatment_screen(name):
     patient_details_treatments_screen.geometry("1000x1000")
     patient_details_treatments_screen.title("Patient details and treatments")
 
-    bg1=PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\doctor background.gif')
-    # create a Form label
-    my_label1=Label(patient_details_treatments_screen, image=bg1)
-    my_label1.place(x=0,y=0,relwidth=1,relheight=1)
+    patient_details_treatments_screen_bg=PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\treatment background.gif')
+    patient_details_treatments_screen_label=Label(patient_details_treatments_screen, image=patient_details_treatments_screen_bg)
+    patient_details_treatments_screen_label.place(x=0,y=0,relwidth=1,relheight=1)
+
+    patient_details_treatments_screen_label.image = patient_details_treatments_screen_bg
 
     treatments_file=open("Patient_" + name + ".txt","r")
     flag=0
