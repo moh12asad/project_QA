@@ -11,12 +11,15 @@ def register_login_main():
     main_screen.geometry("300x250")  # set the configuration of GUI window
     main_screen.title("Account Login")  # set the title of GUI window
 
+    bg=PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\disease background.gif')
     # create a Form label
-    Label(text="Welcome our medical system\nChoose Login Or Register", bg="light green", width="50", height="2", font=("Calibri", 13)).pack()
+    my_label=Label(main_screen,image=bg)
+    my_label.place(x=0,y=0,relwidth=1,relheight=1)
+    Label(main_screen,text="Welcome our medical system\nChoose Login Or Register", bg="light green", width="50", height="2", font=("Calibri", 13)).pack()
     Label(text="").pack()
 
     # create a login button
-    Button(text="login",bg="light green", height="2", width="30", command=login).pack()
+    Button(main_screen,text="login",bg="light green", height="2", width="30", command=login).pack()
     Label(text="").pack()
 
 
@@ -29,6 +32,11 @@ def register():
     register_screen=Toplevel(main_screen)
     register_screen.title("Register")
     register_screen.geometry("300x350")
+    register_bg=PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\register background.gif')
+    # create a Form label
+    register_label=Label(register_screen,image=register_bg)
+    register_label.place(x=0,y=0,relwidth=1,relheight=1)
+
     global username,password,username_entry,password_entry,password_confirmation_entry,password_confirmation,id,id_entry
     username=StringVar()
     password=StringVar()
@@ -308,20 +316,13 @@ def doctor():
     doctor_screen.geometry("300x250")
     doctor_screen.title("patient")
     Label(doctor_screen, text="Add patient and start the diagnosis").pack()
-    Label(login_sucess_screen, text="").pack()
+    Label(doctor_screen, text="").pack()
     Button(doctor_screen,text="Add patient", bg="light green", height="2", width="30",command=add_patient).pack()
+    Label(doctor_screen,text=" ").pack()
+    Button(doctor_screen,text="Exit", bg="light green", height="2", width="30",command=close_doctor_screen).pack()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+def close_doctor_screen():
+    doctor_screen.destroy()
+    main_screen.destroy()
 register_login_main()

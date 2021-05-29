@@ -2,6 +2,7 @@ from tkinter import *
 from Help import *
 
 
+
 def add_patient():
     global add_patient_screen
     add_patient_screen = Toplevel()
@@ -237,13 +238,31 @@ def patient_file(patient_details, patient_high_low_values, name1, age1, smoking1
     treatment_screen(name1)
 
 def treatment_screen(name):
-    global patient_details_treatments
-    patient_details_treatments=Toplevel()
-    patient_details_treatments.geometry("1000x1000")
-    patient_details_treatments.title("Patient details and treatments")
+    global patient_details_treatments_screen
+    patient_details_treatments_screen=Toplevel()
+    patient_details_treatments_screen.geometry("1000x1000")
+    patient_details_treatments_screen.title("Patient details and treatments")
+
+    bg1=PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\doctor background.gif')
+    # create a Form label
+    my_label1=Label(patient_details_treatments_screen, image=bg1)
+    my_label1.place(x=0,y=0,relwidth=1,relheight=1)
 
     treatments_file=open("Patient_" + name + ".txt","r")
+    flag=0
     for line in treatments_file.readlines():
-        label=Label(patient_details_treatments, text=line,width="10000",anchor=W).pack()
+        if flag == 0:
+            Label(patient_details_treatments_screen, text=line, width="10000", font=("Calibri", 9), anchor=W).pack()
+        if line=='Treatment:':
+            flag=1
+        if flag ==1:
+            Label(patient_details_treatments_screen, text=line, width="10000", font=("Calibri", 9), fg='red', anchor=W).pack()
 
+    treatments_file.close()
 
+    Button(patient_details_treatments_screen,text="close",bg="light green", height="2", width="30", command=close_patient_details_treatments_screen).pack()
+
+def close_patient_details_treatments_screen():
+    patient_details_treatments_screen.withdraw()
+    diagnosis_screen.withdraw()
+    add_patient_screen.withdraw()
