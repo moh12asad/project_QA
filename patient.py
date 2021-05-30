@@ -256,21 +256,19 @@ def treatment_screen(name):
     patient_details_treatments_screen.geometry("1000x1000")
     patient_details_treatments_screen.title("Patient details and treatments")
 
-    patient_details_treatments_screen_bg=PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\treatment background.gif')
-    patient_details_treatments_screen_label=Label(patient_details_treatments_screen, image=patient_details_treatments_screen_bg)
-    patient_details_treatments_screen_label.place(x=0,y=0,relwidth=1,relheight=1)
 
-    patient_details_treatments_screen_label.image = patient_details_treatments_screen_bg
 
     treatments_file=open("Patient_" + name + ".txt","r")
     flag=0
     for line in treatments_file.readlines():
         if flag == 0:
-            Label(patient_details_treatments_screen, text=line, width="10000", font=("Calibri", 9), anchor=W).pack()
-        if line=='Treatment:':
+            Label(patient_details_treatments_screen, text=line, width="10000",font=("Calibri", 9), anchor=W).pack()
+        if line=="diseases: \n":
             flag=1
         if flag ==1:
-            Label(patient_details_treatments_screen, text=line, width="10000", font=("Calibri", 9), fg='red', anchor=W).pack()
+            Label(patient_details_treatments_screen, text=line, width="10000",font=("Calibri", 9), fg='red', anchor=W).pack()
+
+
 
     treatments_file.close()
 
