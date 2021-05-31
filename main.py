@@ -11,7 +11,7 @@ def register_login_main():
     main_screen.geometry("300x250")  # set the configuration of GUI window
     main_screen.title("Account Login")  # set the title of GUI window
 
-    bg=PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\disease background.gif')
+    bg=PhotoImage(file=r'photos\disease background.gif')
     # create a Form label
     my_label=Label(main_screen,image=bg)
     my_label.place(x=0,y=0,relwidth=1,relheight=1)
@@ -33,7 +33,7 @@ def register():
     register_screen=Toplevel(main_screen)
     register_screen.title("Register")
     register_screen.geometry("300x500")
-    register_bg=PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\register bg new.gif')
+    register_bg=PhotoImage(file=r'photos\register bg new.gif')
     register_label=Label(register_screen,image=register_bg)
     register_label.place(x=0,y=0,relwidth=1,relheight=1)
 
@@ -105,7 +105,7 @@ def register_user():
         username_register_error()
     if(len(id_info))!=9:
         error=True
-        id_register_error_screen()
+        id_register_error()
 
 
     if error==False:
@@ -211,7 +211,7 @@ def login():
     login_screen.title("Login")
     login_screen.geometry("300x500")
 
-    login_bg=PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\register bg new.gif')
+    login_bg=PhotoImage(file=r'photos\register bg new.gif')
     # create a Form label
     login_label=Label(login_screen,image=login_bg)
     login_label.place(x=0,y=0,relwidth=1,relheight=1)
@@ -317,7 +317,7 @@ def login_sucess_screen():
      login_sucess_screen.title("Login sucess")
      login_sucess_screen.geometry("300x250")
 
-     login_sucess_bg = PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\login background.gif')
+     login_sucess_bg = PhotoImage(file=r'photos\login background.gif')
      # create a Form label
      login_sucess_label = Label(login_sucess_screen, image=login_sucess_bg)
      login_sucess_label.place(x=0, y=0, relwidth=1, relheight=1)
@@ -340,7 +340,7 @@ def doctor():
     doctor_screen.geometry("300x250")
     doctor_screen.title("patient")
 
-    doctor_bg = PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\login background.gif')
+    doctor_bg = PhotoImage(file=r'photos\login background.gif')
     # create a Form label
     doctor_label = Label(doctor_screen, image=doctor_bg)
     doctor_label.place(x=0, y=0, relwidth=1, relheight=1)
