@@ -9,7 +9,7 @@ def add_patient():
     add_patient_screen.geometry("500x500")
     add_patient_screen.title("patient details and diagnosis")
 
-    add_patient_bg = PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\500x500.gif')
+    add_patient_bg = PhotoImage(file=r'photos\500x500.gif')
     add_patient_label = Label(add_patient_screen, image=add_patient_bg)
     add_patient_label.place(x=0, y=0, relwidth=1, relheight=1)
     add_patient_label.image = add_patient_bg
@@ -75,7 +75,7 @@ def diagnosis():
     diagnosis_screen.geometry("500x500")
     diagnosis_screen.title("Diagnosis")
 
-    diagnosis_screen_bg = PhotoImage(file=r'C:\Users\mohammed asad\Desktop\photos\500x500.gif')
+    diagnosis_screen_bg = PhotoImage(file=r'photos\500x500.gif')
     diagnosis_screen_label = Label(diagnosis_screen, image=diagnosis_screen_bg)
     diagnosis_screen_label.place(x=0, y=0, relwidth=1, relheight=1)
 
@@ -239,6 +239,7 @@ def patient_file(patient_details, patient_high_low_values, name1, age1, smoking1
         patient_details_file.write(i +",")
     for i in patient_diagnosis:
         treatment.append(treatments[i])
+
 
     patient_details_file.write("\nTreatment: \n")
     counter=0
