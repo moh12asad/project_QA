@@ -157,7 +157,7 @@ def password_register_error():
     password_register_error_screen = Toplevel(register_screen)
     password_register_error_screen.title("Error")
     password_register_error_screen.geometry("250x150")
-    Label(password_register_error_screen, text="Password not as requirments", fg="red", font=("Calibri", 13)).pack()
+    Label(password_register_error_screen, text="Password does not match requirements", fg="red", font=("Calibri", 13)).pack()
     Button(password_register_error_screen, bg="light green", text="Ok", width=10, height=5, command=close_password_register_error_screen).pack()
     username_entry.delete(0, END)
     password_entry.delete(0, END)
@@ -170,7 +170,7 @@ def username_register_error():
     username_register_error_screen = Toplevel(register_screen)
     username_register_error_screen.title("Error")
     username_register_error_screen.geometry("250x150")
-    Label(username_register_error_screen, text="Username not as requirments", fg="red", font=("Calibri", 13)).pack()
+    Label(username_register_error_screen, text="Username does not match the requirements", fg="red", font=("Calibri", 13)).pack()
     Button(username_register_error_screen, bg="light green", text="Ok", width=10, height=5, command=close_username_register_error_screen).pack()
     username_entry.delete(0, END)
     password_entry.delete(0, END)
@@ -293,22 +293,27 @@ def login_verify():
 
 
     if username_found==False:
-        Label(login_screen, text="Username is not exist!", fg="red", font=("calibri", 11)).pack()
-        Label(login_screen, text="").pack()
+        Label(login_screen, text="Username does not exist:", fg="red",bg='light green', font=("calibri", 11)).pack()
+        username_error_reason=check_username_error(username1)
+        Label(login_screen, text=username_error_reason, bg='light green', fg="red", font=("calibri", 11)).pack()
+
 
 
     else:
         if password_found==False:
-            Label(login_screen, text="Incorrect password!", fg="red", font=("calibri", 11)).pack()
-            Label(login_screen, text="").pack()
+            password_error_reason=check_password_error(password1)
+            Label(login_screen, text=password_error_reason,bg='light green', fg="red", font=("calibri", 11)).pack()
+
         if id_found==False:
-            Label(login_screen, text="Incorrect id!", fg="red", font=("calibri", 11)).pack()
-            Label(login_screen, text="").pack()
+
+            id_error_reason=check_id_error(id1)
+            Label(login_screen, text=id_error_reason,bg='light green', fg="red", font=("calibri", 11)).pack()
+
         if login_sucess==True:
             login_sucess_screen()
 
 
-# Test for login faild screen
+
 def login_sucess_screen():
      global user_logged_in
      user_logged_in=True
@@ -318,7 +323,7 @@ def login_sucess_screen():
      login_sucess_screen.geometry("300x250")
 
      login_sucess_bg = PhotoImage(file=r'photos\login background.gif')
-     # create a Form label
+
      login_sucess_label = Label(login_sucess_screen, image=login_sucess_bg)
      login_sucess_label.place(x=0, y=0, relwidth=1, relheight=1)
      login_sucess_label.image = login_sucess_bg
@@ -356,4 +361,5 @@ def doctor():
 def close_doctor_screen():
     doctor_screen.destroy()
     main_screen.destroy()
+
 register_login_main()
