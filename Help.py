@@ -80,6 +80,7 @@ def check_id_error(id):
         x+='your id includes more than 9 digits\n'
     if len(id)<9:
         x+='your id number includes less than 9 digits\n'
+
     if id.isdigit()==False:
         x+='your id number includes chars!\n'
     return x

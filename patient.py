@@ -212,7 +212,7 @@ def arranged_patient_data():
     patient_file(patient_details, patient_high_low_values, name1, age1, smoking1, gender1, ethnic1,treatments,patient_diagnosis)
 
 
-def patient_file(patient_details, patient_high_low_values, name1, age1, smoking1, gender1, ethnic1,treatments,patient_diagnosis):
+def patient_file( patient_details, patient_high_low_values, name1, age1, smoking1, gender1, ethnic1,treatments,patient_diagnosis):
     patient_details_file = open("Patient_" + name1 + ".txt", "a")
     patient_details_file.write(
         "name: " + name1 + " age: " + age1 + " gender: " + gender1 + " ethnic: " + ethnic1 + " smoking: " + smoking1 + "\n")
