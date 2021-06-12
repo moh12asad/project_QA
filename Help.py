@@ -121,7 +121,7 @@ def check_patient_wbc(wbc_value,age):
             return "high"
         if wbc_value<5500:
             return "low"
-    else:
+    if age<=4:
         if wbc_value>17500:
             return "high"
         if wbc_value<6000:
