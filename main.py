@@ -301,12 +301,12 @@ def login_verify():
 
     else:
         if password_found==False:
-            password_error_reason=check_password_error(password1)
+            password_error_reason=check_password_error(password1,password_found)
             Label(login_screen, text=password_error_reason,bg='light green', fg="red", font=("calibri", 11)).pack()
 
         if id_found==False:
 
-            id_error_reason=check_id_error(id1)
+            id_error_reason=check_id_error(id1,id_found)
             Label(login_screen, text=id_error_reason,bg='light green', fg="red", font=("calibri", 11)).pack()
 
         if login_sucess==True:

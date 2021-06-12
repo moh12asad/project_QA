@@ -46,8 +46,10 @@ def username_as_requirements(username_info_check):
     return True
 
 
-def check_password_error(password):
+def check_password_error(password,password_found):
     x=''
+    if password_found==False:
+        x+='Password does not match the username\n'
     if len(password)<8:
         x+= 'your password is not long enough!\n'
     if len(password)>10:
@@ -74,8 +76,10 @@ def check_password_error(password):
         x+= 'your password does not include special chars\n'
     return x
 
-def check_id_error(id):
+def check_id_error(id,id_found):
     x=''
+    if id_found==False:
+        x+='Incorrect id'
     if len(id)>9:
         x+='your id includes more than 9 digits\n'
     if len(id)<9:
